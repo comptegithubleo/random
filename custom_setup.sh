@@ -14,7 +14,7 @@ install_x2go() {
         elif [ "$input" = "server" ]; then
                 apt install openssh-server
                 systemctl restart ssh
-                apt install x2goserver x2goserver-session x2godesktopsharing
+                apt install x2goserver x2goserver-xsession x2godesktopsharing
         fi
 }
 
