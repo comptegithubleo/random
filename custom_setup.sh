@@ -7,15 +7,14 @@ dpkg_from_url() {
         rm -f "$TEMP_DEB"
 }
 
-install_vnc() {
+install_x2go() {
         read -p "Install [client] or [server] ? > " input
         if [ "$input" = "client" ]; then
-                apt install xtightvncviewer
+                apt install xg2goclient
         elif [ "$input" = "server" ]; then
-                read -p "Start server at startup ? (y/n) > " startup
-                apt install tightvncserver
-                vncserver
-                vncserver -kill :1
+                apt install openssh-server
+                systemctl restart ssh
+                apt install x2goserver x2goserver-session x2godesktopsharing
         fi
 }
 
@@ -33,7 +32,8 @@ do
 |
 | REMOTE CONNECTION
 |       wireguard (Work in progress)
-|       vnc
+|       x2go
+|           - uses ssh-server
 |           - choose between client & server, startup config etc
 | MISC
 |       cowsay
@@ -68,7 +68,7 @@ do
                         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
                         ;;
                 vnc)
-                        install_vnc
+                        install_x2go
                         ;;
                 cowsay)
                         yes | apt install cowsay
