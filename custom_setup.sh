@@ -3,10 +3,21 @@
 dpkg_from_url() {
         TEMP_DEB="$(mktemp)" &&
         wget -O "$TEMP_DEB" $1 &&
-        sudo dpkg --skip-same-version -i "$TEMP_DEB"
+        dpkg --skip-same-version -i "$TEMP_DEB"
         rm -f "$TEMP_DEB"
 }
 
+install_vnc() {
+        read -p "Install [client] or [server] ? > " input
+        if [ "$input" = "client" ]; then
+                apt install xtightvncviewer
+        elif [ "$input" = "server" ]; then
+                read -p "Start server at startup ? (y/n) > " startup
+                apt install tightvncserver
+                vncserver
+                vncserver -kill :1
+        fi
+}
 
 while :
 do
@@ -20,6 +31,10 @@ do
 |           - npm version manager - v0.40.1
 |       all-programs
 |
+| REMOTE CONNECTION
+|       wireguard (Work in progress)
+|       vnc
+|           - choose between client & server, startup config etc
 | MISC
 |       cowsay
 |	editor
@@ -31,7 +46,7 @@ do
 
         read -p "Select things to install  > " input
 
-        if [[ $input = q ]] || [[ $input = quit ]]; then
+        if [ "$input" = "q" ] || [ "$input" = "quit" ]; then
                 break
         else
                 case $input in
@@ -51,6 +66,9 @@ do
                         wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
                         export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
                         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+                        ;;
+                vnc)
+                        install_vnc
                         ;;
                 cowsay)
                         yes | apt install cowsay
