@@ -18,17 +18,32 @@ install_x2go() {
         fi
 }
 
+log() {
+        if [ -d "$HOME/.logs.d/" ]; then
+                echo "$HOME/.logs.d/ already exist."
+        else
+                mkdir $HOME/.logs.d/
+        fi
+
+        
+        echo "
+if ! [[ \$(ps -p \$(ps -o ppid= \$\$) -o comm=) == \"script\" ]]; then
+        alias log=\"script $HOME/.logs.d/session.\$(date +'%d-%m-%Y-%Hh%Mm%Ss')\"
+fi" >> ~/.bashrc
+
+}
+
 while :
 do
         echo "| ==--== INSTALL ==--==
 | PROGRAMS
 |       ranger
 |       docker-compose
+|           - v1
 |	codium
 |           - open-source vscode
 |       nvm
 |           - npm version manager - v0.40.1
-|       all-programs
 |
 | REMOTE CONNECTION
 |       wireguard (Work in progress)
@@ -39,7 +54,8 @@ do
 |       cowsay
 |	editor
 |           - choose default editor (nano, vim, ...)
-|       all-misc
+|       log
+|           - create custom 'log' command that logs input output of every terminal session to \$HOME, using 'script'.
 |
 | 'q' or 'quit' to quit
 "
@@ -79,6 +95,9 @@ do
                         ;;
                 editor)
                         update-alternatives --config editor
+                        ;;
+                log)
+                        log
                         ;;
                 *)
                         ;;
