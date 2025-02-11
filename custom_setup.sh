@@ -18,17 +18,26 @@ install_x2go() {
         fi
 }
 
-log() {
-        if [ -d "$HOME/.logs.d/" ]; then
-                echo "$HOME/.logs.d/ already exist."
-        else
-                mkdir $HOME/.logs.d/
-        fi
+#log() {
+#        if [ -d "$HOME/.logs.d/" ]; then
+#                echo "$HOME/.logs.d/ already exist."
+#        else
+#                mkdir $HOME/.logs.d/
+#        fi
+#
+#        echo "
+#if ! [[ \$(ps -p \$(ps -o ppid= \$\$) -o comm=) == \"script\" ]]; then
+#        alias log=\"script $HOME/.logs.d/session.\$(date +'%d-%m-%Y-%Hh%Mm%Ss')\"
+#fi" >> ~/.bashrc
+#}
 
-        
+log() {        
+        apt install pipx
+        pipx install TermRecord
+
         echo "
 if ! [[ \$(ps -p \$(ps -o ppid= \$\$) -o comm=) == \"script\" ]]; then
-        alias log=\"script $HOME/.logs.d/session.\$(date +'%d-%m-%Y-%Hh%Mm%Ss')\"
+        alias log=\"TermRecord -o ./TermRecord.\$(date +'%d-%m-%Y-%Hh%Mm%Ss').html\"
 fi" >> ~/.bashrc
 
 }
@@ -46,7 +55,7 @@ do
 |           - npm version manager - v0.40.1
 |
 | REMOTE CONNECTION
-|       wireguard (Work in progress)
+|       wireguard (TO-DO)
 |       x2go
 |           - uses ssh-server
 |           - choose between client & server, startup config etc
@@ -55,7 +64,7 @@ do
 |	editor
 |           - choose default editor (nano, vim, ...)
 |       log
-|           - create custom 'log' command that logs input output of every terminal session to \$HOME, using 'script'.
+|           - create custom 'log' command using 'TermRecord' to record terminal actions to a local HTML playback file.
 |
 | 'q' or 'quit' to quit
 "
@@ -98,6 +107,9 @@ do
                         ;;
                 log)
                         log
+                        ;;
+                megalog)
+                        megalog
                         ;;
                 *)
                         ;;
