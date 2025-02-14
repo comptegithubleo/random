@@ -1,7 +1,9 @@
 {
   "lazy.nvim": { "branch": "main", "commit": "f15a93907ddad3d9139aea465ae18336d87f5ce6" },
-  "nvim-treesitter": { "branch": "master", "commit": "6108ba7a135ed37e32276ccb877a348af17fe411" },
-  "plenary.nvim": { "branch": "master", "commit": "3707cdb1e43f5cea73afb6037e6494e7ce847a66" },
+  "mini.icons": { "branch": "main", "commit": "ec61af6e606fc89ee3b1d8f2f20166a3ca917a36" },
+  "nvim-treesitter": { "branch": "master", "commit": "e411cf2c8adea87acda6c3d634a375addbfff88e" },
+  "oil.nvim": { "branch": "master", "commit": "abbfbd0dbcaa78c3dcdada191ea23e50a41e5806" },
+  "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "rose-pine": { "branch": "main", "commit": "20c7940da844aa4f162a64e552ae3c7e9fdc3b93" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" }
 }
