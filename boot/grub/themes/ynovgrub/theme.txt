@@ -1,0 +1,66 @@
+# No Copyright (C) 2025
+
+# general settings
+title-text: ""
+title-color: "#d9fffe"
+message-color: "#fd262e"
+message-bg-color: "#808080"
+desktop-image: "background.png"
+desktop-color: "#808080"
+
++ label {
+	text="Le Ynov grub"
+	font = "Comic Sans MS Regular 32"
+	color="#bafff7"
+	left = 1%
+	top = 10%
+	height = 20
+	width = 400      
+	align = "center"
+}
+
++ label {
+	text = "Turbo-overclocking LOCKED: missing 8000€ yearly payment and/or CVEC"
+	font = "GNU Unifont Regular 12"
+	color = "#ff1100"
+	left = 1%
+	top = 1%
+	align = "center"
+	width=160
+	height= 40
+}
+
+
+# boot menu
++ boot_menu {
+	left = 15%
+	width = 50%
+	top = 40%
+	height = 40%	
+	item_color = "#000000"
+	selected_item_color = "#a7faf0"
+        item_font = "Comic Sans MS Regular 18"
+	icon_width = 16
+	icon_height = 16
+	item_height = 33
+	item_padding = 20
+	item_icon_space = 5
+	item_spacing = 5
+	menu_pixmap_style = "boot_menu2_*.png"
+	selected_item_pixmap_style = "highlight_*.png"
+}
+
+# Show progress
++ progress_bar {
+	id = "__timeout__"
+	left = 0%
+	width = 100%
+	top = 100%
+	height = 31
+	show_text = false
+	text = ""
+	fg_color = "#3daee9"
+	bg_color = "#31363b"
+	border_color = "#31363b"
+	highlight_style = "progress_highlight_*.png"
+}
